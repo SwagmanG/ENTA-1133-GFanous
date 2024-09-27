@@ -109,8 +109,8 @@ namespace gFanousLab3Assignment
                     Console.WriteLine(username + " rolled a");
                     playerScore += diceEightSides.Rolling();
                     rolledD8 = true;
-                    
-                    
+
+
                 }
                 else
                 {   //if the dice was rolled previously, will run the inventroy and seletion function again until a different dice is picked
@@ -125,7 +125,7 @@ namespace gFanousLab3Assignment
                     Console.WriteLine(username + " rolled a");
                     playerScore += diceTwelveSides.Rolling();
                     rolledD12 = true;
-                    
+
                 }
                 else
                 {   //if the dice was rolled previously, will run the inventroy and seletion function again until a different dice is picked
@@ -140,15 +140,20 @@ namespace gFanousLab3Assignment
                     Console.WriteLine(username + " rolled a");
                     playerScore += diceTwentySides.Rolling();
                     rolledD20 = true;
-                   
+
                 }
                 else
                 {   //if the dice was rolled previously, will run the inventroy and seletion function again until a different dice is picked
                     DiceInventory();
                     DiceSelection();
                 }
-                
+
             }//returns the score of all the rolls added together
+            else
+            {
+                DiceInventory();
+                DiceSelection();
+            }
             return playerScore;
         }
 

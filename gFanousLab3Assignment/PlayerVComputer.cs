@@ -60,7 +60,7 @@ namespace gFanousLab3Assignment
                  cpu.CPUDiceRoller();//runs the code for the cpus dice roller
 
                 player.DiceInventory();
-                player.DiceSelection();g
+                player.DiceSelection();
 
                 cpu.CPUDiceSelector();
                 cpu.CPUDiceRoller();
