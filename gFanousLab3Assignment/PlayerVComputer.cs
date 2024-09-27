@@ -60,7 +60,7 @@ namespace gFanousLab3Assignment
                  cpu.CPUDiceRoller();//runs the code for the cpus dice roller
 
                 player.DiceInventory();
-                player.DiceSelection();
+                player.DiceSelection();g
 
                 cpu.CPUDiceSelector();
                 cpu.CPUDiceRoller();
@@ -123,16 +123,20 @@ namespace gFanousLab3Assignment
             if (player.playerScore > cpu.cpuScore)
             {
                 Console.WriteLine("After tallying up the score, " + player.username + " wins with a total of " + player.playerScore + " Points!!");
+                Console.WriteLine(" Hope you had fun, Goodbye!!");
             }
+            
             //checks if the player has the same score
             else if (player.playerScore == cpu.cpuScore)
             {
                 Console.WriteLine("After tallying up the score, " + player.username + " ties with the CPU!!");
+                Console.WriteLine(" Hope you had fun, Goodbye!!");
             }
             //checks if the player has the smaller score
             else if (player.playerScore < cpu.cpuScore)
             {
                 Console.WriteLine("After tallying up the score, the CPU wins with a total of " + cpu.cpuScore + " Points!!");
+                Console.WriteLine(" Hope you had fun, Goodbye!!");
             }
         }   
     }
