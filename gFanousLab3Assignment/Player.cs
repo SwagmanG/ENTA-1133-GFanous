@@ -18,10 +18,16 @@ namespace gFanousLab3Assignment
 
         //initializing the variable used to keep track of the total of all dice roll values.
         internal int playerScore;
+        internal int playerDiceRoll;
+        internal int playerRollTotal;
+        internal int playerOddRolls;
+        internal int playerEvenRolls;
         
         //handles user input for their username
         internal string PlayerName()
-        {   //the input for the username and assigns it to username
+        {
+            Console.WriteLine("What's your name wastelander, I like to know the names of the people I shoot.");
+            //the input for the username and assigns it to username
             username = Console.ReadLine();
 
             // returns the value for username to PlayerName()
@@ -31,43 +37,80 @@ namespace gFanousLab3Assignment
         internal void DiceInventory()
         {
             
-            Console.WriteLine("Here is your selection of dice.");
+            Console.WriteLine("Pick your poison.");
             Console.WriteLine("-------------------------------");
             //checks if the dice has already been rolled
             if (rolledD6 == false)
             {   //if its false then print D#, otherwise print you already rolled this dice.
-                Console.WriteLine("D6");       
+                Console.WriteLine("Pistol");    
+                Console.WriteLine(@" +--^----------,--------,-----,--------^-,
+ | |||||||||   `--------'     |          O
+ `+---------------------------^----------|
+   `\_,---------,---------,--------------'
+     / XXXXXX /'|       /'
+    / XXXXXX /  `\    /'
+   / XXXXXX /`-------'
+  / XXXXXX /
+ / XXXXXX /
+(________(                
+ `------'        ");
             }
             else
             {
-                Console.WriteLine("You already rolled a D6");
+                Console.WriteLine("The pistol is broken.");
             }
             //checks if the dice has already been rolled
             if (rolledD8 == false)
             {   //if its false then print D#, otherwise print you already rolled this dice.
-                Console.WriteLine("D8");
+                Console.WriteLine("Magnum");
+                Console.WriteLine(@"  (                                 _
+   )                               /=>
+  (  +____________________/\/\___ / /|
+   .''._____________'._____      / /|/\
+  : () :              :\ ----\|    \ )
+   '..'______________.'0|----|      \
+                    0_0/____/        \
+                        |----    /----\
+                       || -\\ --|      \
+                       ||   || ||\      \
+                        \\____// '|      \
+                                .'/       |
+                               .:/        |
+                               :/_________|");
             }
             else
             {
-                Console.WriteLine("You already rolled a D8");
+                Console.WriteLine("The magnum is broken.");
             }
             //checks if the dice has already been rolled
             if (rolledD12 == false)
             {   //if its false then print D#, otherwise print you already rolled this dice.
-                Console.WriteLine("D12");
+                Console.WriteLine("Assault Rifle");
+                Console.WriteLine(@"                           ______
+        |\_______________ (_____\\______________
+HH======#H###############H#######################
+        ' ~""""""""""""""""""""""""""""`##(_))#H\""""""""""Y########
+                          ))    \#H\       `""Y###
+                          ""      }#H)");
             }
             else
             {
-                Console.WriteLine("You already rolled a D12");
+                Console.WriteLine("The rifle is broken.");
             }
             //checks if the dice has already been rolled
             if (rolledD20 == false)
             {   //if its false then print D#, otherwise print you already rolled this dice.
-                Console.WriteLine("D20");
-            }
+                Console.WriteLine("Shotgun");
+                Console.WriteLine(@" ,______________________________________       
+|_________________,----------._ [____]  """"-,__  __....-----=====
+               (_(||||||||||||)___________/   """"                |
+                  `----------'         [ ))""-,                   |
+                                       """"    `,  _,--....___    |
+                                               `/           """"""""");
+            }   
             else
             {
-                Console.WriteLine("You already rolled a D20");
+                Console.WriteLine("The shotgun is broken.");
             }
 
             Console.WriteLine("-------------------------------");
@@ -88,75 +131,129 @@ namespace gFanousLab3Assignment
             string selectedDice = Console.ReadLine();
 
             //checks for a string input of these values then the code inside
-            if (selectedDice == "D6" || selectedDice == "6" || selectedDice == "d6")
+            if (selectedDice == "Pistol" || selectedDice == "pistol")
             {   //checks if this dice had been rolled previously
                 if (rolledD6 == false)
                 {   //if false will roll the dice
-                    Console.WriteLine(username + " rolled a");
-                    playerScore += diceSixSides.Rolling();
+                   
+                    playerDiceRoll = diceSixSides.Rolling();
+                    playerRollTotal += playerDiceRoll;//Adds the dice roll to the roll total
+                    if (playerDiceRoll % 2 == 0)//checking if the dice roll is even or odd and incrementing a variable.
+                    {
+                        playerEvenRolls++;
+                    }
+                    else
+                    {
+                        playerOddRolls++;
+                    }
+
+
+                    Console.WriteLine(username + " dealt " + playerDiceRoll + " damage");
+
                     rolledD6 = true;
                 }
                 else
                 {   //if the dice was rolled previously, will run the inventroy and seletion function again until a different dice is picked
-                    DiceInventory();
-                    DiceSelection();
+                    PlayerDiceSelectionError();
                 }
             }
-            else if (selectedDice == "D8" || selectedDice == "8" || selectedDice == "d8")
+            else if (selectedDice == "magnum" || selectedDice == "Magnum")
             {
                 if (rolledD8 == false)
                 {   //if false will roll the dice
-                    Console.WriteLine(username + " rolled a");
-                    playerScore += diceEightSides.Rolling();
+                    
+                    playerDiceRoll = diceEightSides.Rolling();
+                    playerRollTotal += playerDiceRoll;//Adds the dice roll to the roll total
+                    if (playerDiceRoll % 2 == 0)//checking if the dice roll is even or odd and incrementing a variable.
+                    {
+                        playerEvenRolls++;
+                    }
+                    else
+                    {
+                        playerOddRolls++;
+                    }
+
+
+                    Console.WriteLine(username + " dealt " + playerDiceRoll + " damage");
+
                     rolledD8 = true;
 
 
                 }
                 else
                 {   //if the dice was rolled previously, will run the inventroy and seletion function again until a different dice is picked
-                    DiceInventory();
-                    DiceSelection();
+                    PlayerDiceSelectionError();//calls the PlayerDiceSelectionError function
                 }
             }
-            else if (selectedDice == "D12" || selectedDice == "12" || selectedDice == "d12")
+            else if (selectedDice == "assault rile" || selectedDice == "Assault Rifle" || selectedDice == "AR" || selectedDice == "ar" || selectedDice == "Assault rifle")
             {
                 if (rolledD12 == false)
                 {    //if false will roll the dice
-                    Console.WriteLine(username + " rolled a");
-                    playerScore += diceTwelveSides.Rolling();
+                    
+                    playerDiceRoll = diceTwelveSides.Rolling();
+                    playerRollTotal += playerDiceRoll;//Adds the dice roll to the roll total
+                    if (playerDiceRoll % 2 == 0)//checking if the dice roll is even or odd and incrementing a variable.
+                    {
+                        playerEvenRolls++;
+                    }
+                    else
+                    {
+                        playerOddRolls++;
+                    }
+
+
+                    Console.WriteLine(username + " dealt " + playerDiceRoll + " damage");
+
                     rolledD12 = true;
 
                 }
                 else
                 {   //if the dice was rolled previously, will run the inventroy and seletion function again until a different dice is picked
-                    DiceInventory();
-                    DiceSelection();
+                    PlayerDiceSelectionError();//calls the PlayerDiceSelectionError function
                 }
             }
-            else if (selectedDice == "D20" || selectedDice == "20" || selectedDice == "d20")
+            else if (selectedDice == "shotgun" || selectedDice == "Shotgun")
             {
                 if (rolledD20 == false)
                 {    //if false will roll the dice
-                    Console.WriteLine(username + " rolled a");
-                    playerScore += diceTwentySides.Rolling();
+                  
+                    playerDiceRoll = diceTwentySides.Rolling();
+                    playerRollTotal += playerDiceRoll;//Adds the dice roll to the roll total
+                    if (playerDiceRoll%2 == 0)//checking if the dice roll is even or odd and incrementing a variable.
+                    {
+                        playerEvenRolls++;
+                    }
+                    else
+                    {
+                        playerOddRolls++;
+                    }
+
+
+
+                    Console.WriteLine(username + " dealt " + playerDiceRoll + " damage");
+
                     rolledD20 = true;
 
                 }
                 else
                 {   //if the dice was rolled previously, will run the inventroy and seletion function again until a different dice is picked
-                    DiceInventory();
-                    DiceSelection();
+                    PlayerDiceSelectionError();//calls the PlayerDiceSelectionError function
                 }
 
-            }//returns the score of all the rolls added together
+            }
             else
             {
-                DiceInventory();
-                DiceSelection();
+                PlayerDiceSelectionError();//calls the PlayerDiceSelectionError function
             }
-            return playerScore;
+            return playerDiceRoll;
         }
 
+
+        internal void PlayerDiceSelectionError() //calls the functions again if a dice it randomly selected had already rolled that dice.
+        {
+            DiceInventory();
+            DiceSelection();
+        }
         
     }
 }

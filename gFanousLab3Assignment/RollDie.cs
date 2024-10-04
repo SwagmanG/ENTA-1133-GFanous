@@ -20,9 +20,9 @@ namespace gFanousLab3Assignment
             //Initializes the randomOutput variable and assigns it to the result that the random.Next() will assign it.
             int randOutput = random.Next(1, sideCount + 1);
 
-            //Prints the roll value.
+           
 
-            Console.WriteLine(randOutput + "!!!");
+           
 
             //will return the value that randOutput gets to be used in the RollScore() function.
             return randOutput;
